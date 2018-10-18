@@ -35,21 +35,22 @@ class HomeScreenState extends State<HomeScreen>
         controller: controller,
       ),
       bottomNavigationBar: new Material(
-        color: Colors.white,
         child: new TabBar(
-          indicatorColor: Colors.redAccent,
+          indicatorColor: Colors.grey,
+          labelColor: Color.fromRGBO(102, 181, 138, 1.0),
+          labelStyle: new TextStyle(fontSize: 14.0),
           tabs: <Tab>[
             new Tab(
               icon: new Icon(
                 Icons.credit_card,
-                color: Colors.redAccent,
+                color: Color.fromRGBO(102, 181, 138, 1.0),
               ),
-              text: 'Cards'
+              text: 'Cards',
             ),
             new Tab(
               icon: new Icon(
                 Icons.list,
-                color: Colors.redAccent,
+                color: Color.fromRGBO(102, 181, 138, 1.0),
               ),
               text: 'List',
             ),

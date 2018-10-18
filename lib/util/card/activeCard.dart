@@ -18,24 +18,17 @@ Positioned cardDemo(
     Function swipeRight,
     Function swipeLeft) {
   Size screenSize = MediaQuery.of(context).size;
+
   // print("Card");
   return new Positioned(
-    bottom: 100.0 + bottom,
+    bottom: 100.0 - bottom,
     right: flag == 0 ? right != 0.0 ? right : null : null,
     left: flag == 1 ? right != 0.0 ? right : null : null,
     child: new Dismissible(
       key: new Key(new Random().toString()),
       crossAxisEndOffset: -0.3,
-      onResize: () {
-        //print("here");
-        // setState(() {
-        //   var i = data.removeLast();
-
-        //   data.insert(0, i);
-        // });
-      },
+      onResize: () {},
       onDismissed: (DismissDirection direction) {
-//          _swipeAnimation();
         if (direction == DismissDirection.endToStart)
           dismissImg(img);
         else
@@ -43,9 +36,7 @@ Positioned cardDemo(
       },
       child: new Transform(
         alignment: flag == 0 ? Alignment.bottomRight : Alignment.bottomLeft,
-        //transform: null,
         transform: new Matrix4.skewX(skew),
-        //..rotateX(-math.pi / rotation),
         child: new RotationTransition(
           turns: new AlwaysStoppedAnimation(
               flag == 0 ? rotation / 360 : -rotation / 360),
@@ -53,10 +44,6 @@ Positioned cardDemo(
             tag: "img",
             child: new GestureDetector(
               onTap: () {
-                // Navigator.push(
-                //     context,
-                //     new MaterialPageRoute(
-                //         builder: (context) => new DetailPage(type: img)));
                 Navigator.of(context).push(new PageRouteBuilder(
                   pageBuilder: (_, __, ___) => new DetailPage(type: img),
                 ));
@@ -69,32 +56,58 @@ Positioned cardDemo(
                   width: screenSize.width / 1.2 + cardWidth,
                   height: screenSize.height / 1.7,
                   decoration: new BoxDecoration(
-                    color: new Color.fromRGBO(121, 114, 173, 1.0),
+                    color: Colors.transparent,
                     borderRadius: new BorderRadius.circular(8.0),
                   ),
-                  child: new Column(
+                  child: new Stack(
                     children: <Widget>[
                       new Container(
-                        width: screenSize.width / 1.2 + cardWidth,
-                        height: screenSize.height / 2.2,
                         decoration: new BoxDecoration(
                           borderRadius: new BorderRadius.only(
-                              topLeft: new Radius.circular(8.0),
-                              topRight: new Radius.circular(8.0)),
+                              topLeft: new Radius.circular(10.0),
+                              topRight: new Radius.circular(10.0)),
                           image: img,
                         ),
                       ),
-                      new Container(
-                          width: screenSize.width / 1.2 + cardWidth,
-                          height:
-                          screenSize.height / 1.7 - screenSize.height / 2.2,
-                          alignment: Alignment.center,
+                      new Positioned(
+                        left: 0.0,
+                        right: 0.0,
+                        bottom: 0.0,
+                        child: new Container(
+                          decoration: new BoxDecoration(
+                            gradient: new LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                colors: [
+                                  Colors.transparent,
+                                  Colors.black.withOpacity(0.8),
+                                ]),
+                          ),
+                          padding: const EdgeInsets.all(24.0),
                           child: new Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            mainAxisSize: MainAxisSize.max,
                             children: <Widget>[
-                              // swipeLeft();
-                             //swipeRight();
-
+                              new Expanded(
+                                  child: new Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  new Text(
+                                    'First Last',
+                                    style: new TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 24.0,
+                                    ),
+                                  ),
+                                  new Text(
+                                    'Short Description',
+                                    style: new TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18.0,
+                                    ),
+                                  )
+                                ],
+                              )),
                               new RoundIconButton.large(
                                 icon: Icons.favorite,
                                 iconColor: Colors.white,
@@ -110,10 +123,11 @@ Positioned cardDemo(
                                   );
                                   Scaffold.of(context).showSnackBar(snackBar);
                                 },
-
                               ),
                             ],
-                          ))
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),

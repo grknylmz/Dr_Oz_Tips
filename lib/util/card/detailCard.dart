@@ -17,7 +17,7 @@ enum AppBarBehavior { normal, pinned, floating, snapping }
 class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
   AnimationController _containerController;
   Animation<double> width;
-  Animation<double> heigth;
+  Animation<double> height;
   DecorationImage type;
 
   _DetailPageState({this.type});
@@ -39,7 +39,7 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
         curve: Curves.ease,
       ),
     );
-    heigth = new Tween<double>(
+    height = new Tween<double>(
       begin: 400.0,
       end: 400.0,
     ).animate(
@@ -48,9 +48,9 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
         curve: Curves.ease,
       ),
     );
-    heigth.addListener(() {
+    height.addListener(() {
       setState(() {
-        if (heigth.isCompleted) {}
+        if (height.isCompleted) {}
       });
     });
     _containerController.forward();
@@ -75,8 +75,8 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
       ),
       child: new Container(
         width: width.value,
-        height: heigth.value,
-        color: const Color.fromRGBO(106, 94, 175, 1.0),
+        height: height.value,
+        color: Color.fromRGBO(234, 245, 240, 1.0),
         child: new Hero(
           tag: "img",
           child: new Card(
@@ -84,7 +84,7 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
             child: new Container(
               alignment: Alignment.center,
               width: width.value,
-              height: heigth.value,
+              height: height.value,
               decoration: new BoxDecoration(
                 color: Colors.white,
                 borderRadius: new BorderRadius.circular(10.0),
@@ -114,7 +114,6 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                             _appBarBehavior == AppBarBehavior.snapping,
                         snap: _appBarBehavior == AppBarBehavior.snapping,
                         flexibleSpace: new FlexibleSpaceBar(
-                          title: new Text("Party"),
                           background: new Stack(
                             fit: StackFit.expand,
                             children: <Widget>[
@@ -164,7 +163,7 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                       width: 600.0,
                       height: 80.0,
                       decoration: new BoxDecoration(
-                        color: new Color.fromRGBO(121, 114, 173, 1.0),
+                        color: Color.fromRGBO(234, 245, 240, 1.0),
                       ),
                       alignment: Alignment.center,
                       child: new Row(
@@ -173,9 +172,7 @@ class _DetailPageState extends State<DetailPage> with TickerProviderStateMixin {
                           new RoundIconButton.large(
                             icon: Icons.favorite,
                             iconColor: Colors.white,
-                            onPressed: () {
-
-                            },
+                            onPressed: () {},
                           ),
                         ],
                       ))

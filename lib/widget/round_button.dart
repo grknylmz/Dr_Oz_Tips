@@ -13,6 +13,9 @@ class RoundIconButton extends StatelessWidget {
   RoundIconButton.small({this.icon, this.iconColor, this.onPressed})
       : size = 50.0;
 
+  RoundIconButton.smallest({this.icon, this.iconColor, this.onPressed})
+      : size = 30.0;
+
   RoundIconButton({this.icon, this.iconColor, this.size, this.onPressed});
 
   @override

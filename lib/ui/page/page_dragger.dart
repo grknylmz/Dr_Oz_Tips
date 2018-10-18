@@ -11,8 +11,8 @@ class PageDragger extends StatefulWidget {
 
   PageDragger(
       {this.canDragLeftToRight,
-        this.canDragRightToLeft,
-        this.slideUpdateSytream});
+      this.canDragRightToLeft,
+      this.slideUpdateSytream});
 
   @override
   _PageDraggerState createState() => new _PageDraggerState();
@@ -100,19 +100,19 @@ class AnimatedPagedragger {
     }
 
     completionAnimationController =
-    new AnimationController(vsync: vsync, duration: duration)
-      ..addListener(() {
-        final slidePercent = lerpDouble(startSlidePercent, endSlidePercent,
-            completionAnimationController.value);
-        slideUpdateStream.add(new SlideUpdate(
-            UpdateType.animating, slidePercent, slideDirection));
-      })
-      ..addStatusListener((AnimationStatus status) {
-        if (status == AnimationStatus.completed) {
-          slideUpdateStream.add(new SlideUpdate(
-              UpdateType.doneAnimating, endSlidePercent, slideDirection));
-        }
-      });
+        new AnimationController(vsync: vsync, duration: duration)
+          ..addListener(() {
+            final slidePercent = lerpDouble(startSlidePercent, endSlidePercent,
+                completionAnimationController.value);
+            slideUpdateStream.add(new SlideUpdate(
+                UpdateType.animating, slidePercent, slideDirection));
+          })
+          ..addStatusListener((AnimationStatus status) {
+            if (status == AnimationStatus.completed) {
+              slideUpdateStream.add(new SlideUpdate(
+                  UpdateType.doneAnimating, endSlidePercent, slideDirection));
+            }
+          });
   }
   run() {
     completionAnimationController.forward(from: 0.0);
